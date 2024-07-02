@@ -28,7 +28,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_PAT }}
 
       - name: Docker meta
         id: meta
@@ -47,4 +47,3 @@ jobs:
           platforms: linux/arm64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
- 
