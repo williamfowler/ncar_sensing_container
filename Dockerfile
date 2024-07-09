@@ -1,9 +1,11 @@
-# Use a base image with Python installed
+# Use the official Python image
 FROM python:3.9
+
+# Set environment variables to non-interactive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary packages for enabling serial port and SPI
 RUN apt-get update && apt-get install -y \
-    raspi-config \
     python3-dev \
     python3-pip \
     libffi-dev \
