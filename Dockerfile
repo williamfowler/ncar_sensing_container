@@ -1,10 +1,49 @@
-FROM ubuntu:22.04
-RUN apt-get update && apt-get install -y openssh-server
-RUN mkdir /var/run/sshd
-RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -i 's|#AuthorizedKeysFile     .ssh/authorized_keys .ssh/authorized_keys2|AuthorizedKeysFile     .ssh/authorized_keys .ssh/authorized_keys2|' /etc/ssh/sshd_config
-RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-RUN mkdir /root/.ssh
-RUN touch /root/.ssh/authorized_keys 
-EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+# Use a base image with Python installed
+FROM python:3.9
+
+# Install necessary packages for enabling serial port and SPI
+RUN apt-get update && apt-get install -y \
+    raspi-config \
+    python3-dev \
+    python3-pip \
+    libffi-dev \
+    libssl-dev \
+    libncurses5-dev \
+    libncursesw5-dev \
+    libreadline-dev \
+    libbz2-dev \
+    libsqlite3-dev \
+    libz-dev \
+    liblzma-dev \
+    zlib1g-dev \
+    build-essential \
+    libudev-dev \
+    libusb-1.0-0-dev \
+    libpcap-dev \
+    libgmp-dev \
+    flex \
+    bison \
+    cmake \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Clone the repository
+RUN git clone https://github.com/williamfowler/Waveshare_LoRa_setup.git /app
+
+# Set the working directory to the LoRa directory
+WORKDIR /app/lora
+
+# Install the Python package
+RUN python setup.py install
+
+# Install additional Python packages
+RUN pip install pytz
+
+# Copy your receive_and_save_updated.py script to the container
+COPY receive_and_save_updated.py /app/receive_and_save_updated.py
+
+# Set the working directory to the root of the repo
+WORKDIR /app
+
+# Run the Python script
+CMD ["python", "receive_and_save_updated.py"]
