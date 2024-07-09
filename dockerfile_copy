@@ -29,3 +29,23 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
+# Clone the repository
+RUN git clone https://github.com/williamfowler/Waveshare_LoRa_setup.git /app
+
+# Set the working directory to the LoRa directory
+WORKDIR /app/lora
+
+# Install the Python package
+RUN python setup.py install
+
+# Install additional Python packages
+RUN pip install pytz
+
+# Copy your receive_and_save_updated.py script to the container
+COPY receive_and_save_updated.py /app/receive_and_save_updated.py
+
+# Set the working directory to the root of the repo
+WORKDIR /app
+
+# Run the Python script
+CMD ["python", "receive_and_save_updated.py"]
