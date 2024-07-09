@@ -1,5 +1,5 @@
-# Use the official Python image
-FROM python:3.9
+# Use the base image for ARM architecture with Python installed
+FROM arm32v7/python:3.9
 
 # Set environment variables to non-interactive
 ENV DEBIAN_FRONTEND=noninteractive
