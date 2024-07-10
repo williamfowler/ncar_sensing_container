@@ -1,1 +1,3 @@
-FROM ubuntu
+FORM ubuntu
+
+CMD ["sleep", "infinity"]
