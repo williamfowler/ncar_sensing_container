@@ -1,5 +1,5 @@
 # Use the base image for ARM architecture with Python installed
-FROM arm32v7/python:3.9
+FROM python:3.9
 
 # Set environment variables to non-interactive
 ENV DEBIAN_FRONTEND=noninteractive
@@ -43,6 +43,8 @@ RUN pip install pytz
 
 # Copy your receive_and_save_updated.py script to the container
 COPY receive_and_save_updated.py /app/receive_and_save_updated.py
+
+COPY LoRaRX.py /app/LoRaRX.py
 
 # Set the working directory to the root of the repo
 WORKDIR /app
