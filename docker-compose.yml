@@ -4,7 +4,7 @@ services:
   sensing:
     image: ncar_weather_sensing
     build: .
-    privileged: true
-    devices:
-      - /dev/serial0:/dev/serial0
-      - /dev/i2c-1:/dev/i2c-1
+    # privileged: true
+    # devices:
+    #   - /dev/serial0:/dev/serial0
+    #   - /dev/i2c-1:/dev/i2c-1
