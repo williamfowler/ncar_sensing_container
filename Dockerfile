@@ -1,9 +1,6 @@
 # Use the base image for ARM architecture with Python installed
 FROM arm32v7/python:3.9
 
-# Set environment variables to non-interactive
-ENV DEBIAN_FRONTEND=noninteractive
-
 # Install necessary packages for enabling serial port and SPI
 RUN apt-get update && apt-get install -y \
     python3-dev \
