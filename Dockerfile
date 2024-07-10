@@ -50,4 +50,5 @@ COPY LoRaRX.py /app/LoRaRX.py
 WORKDIR /app
 
 # Run the Python script
-CMD ["python", "receive_and_save_updated.py"]
+# CMD ["python", "receive_and_save_updated.py"]
+CMD ["sleep", "infinity"]
