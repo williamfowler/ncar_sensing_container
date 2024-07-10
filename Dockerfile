@@ -1,1 +1,1 @@
-FROM dtcooper/raspberrypi-os:bookworm
+FROM ubuntu
