@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
     bison \
     cmake \
     git \
+    strace \
     && rm -rf /var/lib/apt/lists/*
 
 # Clone the repository
@@ -50,5 +51,5 @@ COPY LoRaRX.py /app/LoRaRX.py
 WORKDIR /app
 
 # Run the Python script
-# CMD ["python", "receive_and_save_updated.py"]
-CMD ["sleep", "infinity"]
+CMD ["strace" "python", "receive_and_save_updated.py"]
+# CMD ["sleep", "infinity"]
