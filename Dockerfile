@@ -31,7 +31,9 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Clone the repository
-RUN git clone https://github.com/williamfowler/Waveshare_LoRa_setup.git /app
+# RUN git clone https://github.com/williamfowler/Waveshare_LoRa_setup.git /app
+
+COPY lora /app/lora
 
 # Set the working directory to the LoRa directory
 WORKDIR /app/lora
@@ -53,3 +55,4 @@ WORKDIR /app
 # Run the Python script
 # CMD ["strace", "python", "receive_and_save_updated.py"]
 CMD ["sleep", "infinity"]
+# CMD ["python", "receive_and_save_updated.py"]
