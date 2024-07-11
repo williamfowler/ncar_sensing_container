@@ -44,13 +44,14 @@ with open(file_path, "a") as file:
             while LoRa.available() > 0:
                 message += chr(LoRa.read())
 
-            # write the current date and time
-            utc_now = datetime.now(pytz.utc) # current UTC time
-            curr_time = utc_now.astimezone(tz) # convert to CST
-            message += curr_time.strftime('%Y-%m-%d %H:%M:%S') + "\n"
-
             # Write received message to the file
             if message.strip():
+
+                 # write the current date and time
+                utc_now = datetime.now(pytz.utc) # current UTC time
+                curr_time = utc_now.astimezone(tz) # convert to CST
+                message += curr_time.strftime('%Y-%m-%d %H:%M:%S') + "\n"
+                
                 file.write(message)
                 file.flush()
 
