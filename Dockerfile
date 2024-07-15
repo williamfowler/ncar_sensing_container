@@ -27,7 +27,6 @@ RUN apt-get update && apt-get install -y \
     bison \
     cmake \
     git \
-    ping \
     # strace \
     && rm -rf /var/lib/apt/lists/*
 
