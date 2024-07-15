@@ -87,14 +87,15 @@ while True:
 
             # create and send CHORDS url
             chords_url = create_url(parsed_data)
-            response = requests.get(url=chords_url)
-            print(response)
+            print(chords_url)
+            # response = requests.get(url=chords_url)
+            # print(response)
 
         # Print received data in serial
         print(f"Received: {data.strip()}")
 
         # Print packet/signal status including RSSI, SNR, and signalRSSI
-        print("Packet status: RSSI = {0:0.2f} dBm | SNR = {1:0.2f} dB".format(LoRa.packetRssi(), LoRa.snr()))
+        #print("Packet status: RSSI = {0:0.2f} dBm | SNR = {1:0.2f} dB".format(LoRa.packetRssi(), LoRa.snr()))
 
         # Show received status in case CRC or header error occur
         status = LoRa.status()
