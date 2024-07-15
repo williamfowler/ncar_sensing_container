@@ -42,18 +42,15 @@ WORKDIR /app/lora
 RUN python setup.py install
 
 # Install additional Python packages
-RUN pip install pytz
+RUN pip install pytz requests
 
 # Copy your receive_and_save_updated.py script to the container
-COPY receive_and_save_updated.py /app/receive_and_save_updated.py
+COPY receive_and_save_chords.py /app/receive_and_save_chords.py
 
 COPY LoRaRX.py /app/LoRaRX.py
 
 # Set the working directory to the root of the repo
 WORKDIR /app
 
-# make the share directory
-RUN mkdir /share
-
 # Run the Python script
-CMD ["python", "receive_and_save_updated.py"]
+CMD ["python", "receive_and_save_chords.py"]
