@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
     bison \
     cmake \
     git \
+    ping \
     # strace \
     && rm -rf /var/lib/apt/lists/*
 
@@ -53,5 +54,5 @@ COPY LoRaRX.py /app/LoRaRX.py
 WORKDIR /app
 
 # Run the Python script
-# CMD ["python", "receive_and_save_chords.py"]
-CMD ["sleep", "infinity"]
+CMD ["python", "receive_and_save_chords.py"]
+# CMD ["sleep", "infinity"]
