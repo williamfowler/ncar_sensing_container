@@ -45,7 +45,7 @@ RUN python setup.py install
 RUN pip install pytz requests
 
 # Copy your receive_and_save_updated.py script to the container
-COPY receive_and_save_chords.py /app/receive_and_save_chords.py
+COPY receive_and_save_updated.py /app/receive_and_save_updated.py
 
 COPY LoRaRX.py /app/LoRaRX.py
 
@@ -53,5 +53,4 @@ COPY LoRaRX.py /app/LoRaRX.py
 WORKDIR /app
 
 # Run the Python script
-CMD ["python", "receive_and_save_chords.py"]
-# CMD ["sleep", "infinity"]
+CMD ["python", "receive_and_save_updated.py"]
