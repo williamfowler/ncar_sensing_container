@@ -27,7 +27,7 @@ def write_headers_if_needed(file_path, headers):
                     file.write(headers)
 
 # Check and write headers if needed
-file_path = "/share/log.txt"
+file_path = "/public/data.txt"
 write_headers_if_needed(file_path, headers)
 
 # Begin receiving loop
