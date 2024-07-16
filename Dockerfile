@@ -44,6 +44,10 @@ RUN python setup.py install
 # Install additional Python packages
 RUN pip install pytz requests
 
+# make /share directory
+RUN mkdir /share
+VOLUME /share
+
 # Copy your receive_and_save_updated.py script to the container
 COPY receive_and_save_updated.py /app/receive_and_save_updated.py
 
