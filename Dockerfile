@@ -27,11 +27,11 @@ RUN apt-get update && apt-get install -y \
     bison \
     cmake \
     git \
-    # strace \
+    mosquitto \
+    mosquitto-clients \
+    nano \
+    systemctl \
     && rm -rf /var/lib/apt/lists/*
-
-# Clone the repository
-# RUN git clone https://github.com/williamfowler/Waveshare_LoRa_setup.git /app
 
 COPY lora /app/lora
 
@@ -39,18 +39,20 @@ COPY lora /app/lora
 WORKDIR /app/lora
 
 # Install the Python package
-RUN python setup.py install
+RUN python setup.py install 
 
 # Install additional Python packages
-RUN pip install pytz requests
+RUN pip install pytz requests board adafruit-circuitpython-ltr390 paho-mqtt
 
-# Copy your receive_and_save_updated.py script to the container
-COPY receive_and_save_updated.py /app/receive_and_save_updated.py
+COPY LoRaRX.py ltr390_example_MQTT.py mqtt_publisher_example.py on_start.sh receive_and_save_updated.py /app/
 
-COPY LoRaRX.py /app/LoRaRX.py
+COPY mqtt_setup /etc/mosquitto
 
 # Set the working directory to the root of the repo
 WORKDIR /app
 
-# Run the Python script
-CMD ["python", "receive_and_save_updated.py"]
+EXPOSE 1883
+
+RUN chmod +x ./on_start.sh
+
+CMD ["python", "ltr390_example_MQTT.py"]

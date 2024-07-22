@@ -5,7 +5,5 @@ services:
     image: ncar_weather_sensing
     build: .
     privileged: true
-    # devices:
-    #   - /dev/serial0:/dev/serial0
-    #   - /dev/i2c-1:/dev/i2c-1
-    #   - /dev/spidev0.0:/dev/spidev0.0
+    ports:
+      - "1883:1883"  # Expose port 1883 to the host
