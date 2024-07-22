@@ -44,7 +44,7 @@ RUN python setup.py install
 # Install additional Python packages
 RUN pip install pytz requests board adafruit-circuitpython-ltr390 paho-mqtt
 
-COPY LoRaRX.py ltr390_example_MQTT.py mqtt_publisher_example.py on_start.sh receive_and_save_updated.py /app/
+COPY LoRaRX.py ltr390_example_MQTT.py mqtt_publisher_example.py on_start.sh receive_and_save_updated.py receive_and_save_mqtt.py /app/
 
 COPY mqtt_setup /etc/mosquitto
 
@@ -53,6 +53,6 @@ WORKDIR /app
 
 EXPOSE 1883
 
-RUN chmod +x ./on_start.sh
+# RUN chmod +x ./on_start.sh
 
-CMD ["python", "ltr390_example_MQTT.py"]
+CMD ["python", "receive_and_save_mqtt.py"]
