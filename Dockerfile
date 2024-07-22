@@ -51,7 +51,7 @@ COPY mqtt_setup /etc/mosquitto
 # Set the working directory to the root of the repo
 WORKDIR /app
 
-EXPOSE 1883
+EXPOSE 30001
 
 # RUN chmod +x ./on_start.sh
 
