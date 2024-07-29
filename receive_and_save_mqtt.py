@@ -5,7 +5,7 @@ import pytz  # need sudo pip install pytz
 
 # MQTT Broker settings
 MQTT_BROKER = "0a611c2211104d4c82b15ec089b0ab68.s1.eu.hivemq.cloud"
-MQTT_PORT = 8883
+MQTT_PORT = 30001
 MQTT_USERNAME = "will"
 MQTT_PASSWORD = "PlayBallGame83"
 
