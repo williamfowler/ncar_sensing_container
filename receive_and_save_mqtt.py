@@ -16,7 +16,7 @@ client.tls_set()
 client.connect(MQTT_BROKER, MQTT_PORT)
 client.loop_start()
 
-# DCurrent timezone set to CST
+# Current timezone set to CST
 tz = pytz.timezone('America/Chicago')
 
 # Begin receiving loop
@@ -60,10 +60,15 @@ while True:
                 "pmsa003i/part_100"
             ]
 
-            # Publish each sensor reading to its corresponding topic
-            for topic, value in zip(topics, data):
-                client.publish(topic, payload=value, qos=1)
-                print(f"Published {value} to {topic}")
+            # Last part of the data is the station ID
+            location = data[-1]
+
+            # Publish each sensor reading to its corresponding topic in InfluxDB line protocol format
+            for topic, value in zip(topics, data[:-1]):
+                measurement = topic.split('/')[1]
+                influx_message = f"{measurement},location={location} value={value}"
+                client.publish(topic, payload=influx_message, qos=1)
+                print(f"Published {influx_message} to {topic}")
 
             # Print received message and status
             utc_now = datetime.now(pytz.utc)  # current UTC time
