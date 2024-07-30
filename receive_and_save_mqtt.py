@@ -4,8 +4,8 @@ from datetime import datetime
 import pytz  # need sudo pip install pytz
 
 # MQTT Broker settings
-MQTT_BROKER = "0a611c2211104d4c82b15ec089b0ab68.s1.eu.hivemq.cloud"
-MQTT_PORT = 30001
+MQTT_BROKER = "192.5.86.172"
+MQTT_PORT = 1883
 MQTT_USERNAME = "will"
 MQTT_PASSWORD = "PlayBallGame83"
 
