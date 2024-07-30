@@ -12,7 +12,7 @@ MQTT_PASSWORD = "PlayBallGame83"
 # Initialize MQTT client
 client = paho.Client(client_id="", userdata=None, protocol=paho.MQTTv5)
 client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
-client.tls_set()
+# client.tls_set()
 client.connect(MQTT_BROKER, MQTT_PORT)
 client.loop_start()
 

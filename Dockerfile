@@ -69,7 +69,4 @@ WORKDIR /app
 
 EXPOSE 30001
 
-# RUN chmod +x ./on_start.sh
-
-# CMD ["sleep", "infinity"]
 CMD ["python", "receive_and_save_mqtt.py"]
